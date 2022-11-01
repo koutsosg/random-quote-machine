@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button } from "reactstrap";
-
+import { Button, Row, Col, Card, CardText, Container } from "reactstrap";
 
 function App() {
   const quotesArrUrl =
@@ -33,26 +32,53 @@ function App() {
     fetchQuote();
   };
 
-
   const tweet = `${quote} \n --${author}`;
   return (
     <div className="App">
-      <header className="App-header">
-        <div id="quote-box">
-          <p id="text">"{quote}"</p>
-          <p id="author"> -{author}</p>
-          <a
-            id="tweet-quote"
-            className="btn btn-social-icon btn-twitter"
-            target="_blank"
-            rel="noreferrer"
-            href={encodeURI(`http://twitter.com/intent/tweet?text=${tweet}`)}
-          >
-            <i className="fa fa-twitter"></i>
-          </a>
-          <Button id="new-quote" onClick={handleClick}>
-            New Quote
-          </Button>
+      <header className="App-header ">
+        <div id="quote-box" className="container">
+          <Container className="">
+            <Card
+              color="secondary"
+              style={{
+                width: "100%",
+              }}
+              body
+            >
+              <CardText>
+                <div className="row">
+                  <p id="text">"{quote}"</p>
+                </div>
+                <div className="row justify-content-md-center">
+                  <div className="float-end col-md-6">
+                    <p className="text-end" id="author">
+                      -{author}
+                    </p>
+                  </div>{" "}
+                </div>
+              </CardText>
+              <Row>
+                <Col>
+                  <a
+                    id="tweet-quote"
+                    className="btn btn-social-icon btn-twitter"
+                    target="_blank"
+                    rel="noreferrer"
+                    href={encodeURI(
+                      `http://twitter.com/intent/tweet?text=${tweet}`
+                    )}
+                  >
+                    <i className=" fa fa-twitter"></i>
+                  </a>
+                </Col>
+                <Col>
+                  <Button color="primary" id="new-quote" onClick={handleClick}>
+                    New Quote
+                  </Button>
+                </Col>
+              </Row>
+            </Card>
+          </Container>
         </div>
       </header>
     </div>
